@@ -1,0 +1,21 @@
+from keras.datasets import cifar10
+import numpy as np
+
+class NearestNeighbor:
+    def _init_(self):
+        self.X = None
+        self.Y = None
+
+    def train(self, X, Y):
+        self.im_shape = X.shape[1:]
+        self.X = np.reshape(X,(X.shape[0],np.prod(self.im_shape)))
+        self.Y = Y
+    def predict(self,X):
+        assert self.X is not None, 'Trai method needs to be call first'
+        Yp = np.zeros(X.shape[0],npunit8)
+        for idx in range (X.shape[0]):
+            norm = np.linalg.norm(self.X - X[idx].ravel(),axis=-1)
+            idmin = np.argmin(norm)
+            Yp[idx] = self.Y[idmin]
+
+            return Yp
